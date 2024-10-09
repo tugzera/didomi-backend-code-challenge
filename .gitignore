@@ -36,3 +36,11 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+
+#docker
+
+.docker/db/
+.docker/testdb/
+.docker/eventsdb/
+.docker/eventsdbtest/

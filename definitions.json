@@ -1,0 +1,71 @@
+{
+  "rabbit_version": "4.0.2",
+  "rabbitmq_version": "4.0.2",
+  "product_name": "RabbitMQ",
+  "product_version": "4.0.2",
+  "users": [
+    {
+      "name": "guest",
+      "password_hash": "1ygPqjQoNhU46+GWKCZaIsNKmMGJD4/Vk4kAt+CUBQp9sRY2",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": ["administrator"],
+      "limits": {}
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/",
+      "description": "Default virtual host",
+      "tags": [],
+      "metadata": { "description": "Default virtual host", "tags": [] }
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "topic_permissions": [],
+  "parameters": [],
+  "global_parameters": [
+    {
+      "name": "internal_cluster_id",
+      "value": "rabbitmq-cluster-id-AhBQF0rJLBYeRUOE1xy4Hw"
+    }
+  ],
+  "policies": [],
+  "queues": [
+    {
+      "name": "events_queue",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": { "x-queue-type": "classic" }
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "events_exchange_fanout",
+      "vhost": "/",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "events_exchange_fanout",
+      "vhost": "/",
+      "destination": "events_queue",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    }
+  ]
+}
