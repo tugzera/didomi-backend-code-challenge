@@ -12,7 +12,7 @@ export const typeormConfig: DataSourceOptions = {
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   port: Number(process.env.DB_PORT),
-  migrationsRun: true,
+  migrationsRun: process.env.NODE_ENV === 'test' ? true : false,
   dropSchema: process.env.NODE_ENV === 'test' ? true : false,
   migrations: [`${__dirname}/migrations/*.{js,ts}`],
   entities: [`${__dirname}/models/*.{js,ts}`],

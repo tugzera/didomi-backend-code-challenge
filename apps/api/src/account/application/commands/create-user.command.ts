@@ -4,12 +4,13 @@ import {
   UserPhoneNumberAlreadyRegisteredException,
 } from '@account/domain/exceptions';
 import { UserRepository } from '@account/domain/repositories';
-import { HashGenerator } from '@shared/domain/contracts';
+import { EventHandler, HashGenerator } from '@shared/domain/contracts';
 
 export class CreateUserCommand implements CreateUserCommand.Contract {
   constructor(
     private userRepository: UserRepository,
     private hashGenerator: HashGenerator,
+    private eventHandler: EventHandler,
   ) {}
 
   async execute(input: CreateUserCommand.Input): CreateUserCommand.Output {
@@ -26,6 +27,17 @@ export class CreateUserCommand implements CreateUserCommand.Contract {
       phoneNumber: input.phoneNumber,
     });
     await this.userRepository.save(user);
+    await this.eventHandler.send({
+      eventType: 'USER_CREATED',
+      payload: {
+        email: input.email,
+        firstName: input.firstName,
+        lastName: input.lastName,
+        password: passwordHash,
+        phoneNumber: input.phoneNumber,
+      },
+      queueName: 'events_queue',
+    });
     return {
       id: user.id,
       email: user.email,
