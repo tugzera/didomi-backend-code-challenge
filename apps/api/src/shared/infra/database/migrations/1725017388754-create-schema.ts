@@ -7,6 +7,9 @@ export class CreateSchema1676172431838 implements MigrationInterface {
     await queryRunner.query(
       MigrationFileHelper.read(SCRIPT_CONSTANTS.CREATE_SCHEMA),
     );
+    await queryRunner.query(
+      MigrationFileHelper.read(SCRIPT_CONSTANTS.SEED_SCHEMA),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

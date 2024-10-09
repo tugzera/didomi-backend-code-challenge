@@ -1,6 +1,6 @@
-import { User } from 'src/account/domain/entities/user';
-import { BaseMapper } from 'src/shared/infra/database/mapper/base.mapper';
-import { UserTypeormModel } from 'src/shared/infra/database/models/user.model';
+import { User } from '@account/domain/entities/user';
+import { BaseMapper } from '@shared/infra/database/mapper/base.mapper';
+import { UserTypeormModel } from '@shared/infra/database/models';
 
 export class UserTypeormMapper implements BaseMapper<User, UserTypeormModel> {
   entityToModel(domain: User): UserTypeormModel {
