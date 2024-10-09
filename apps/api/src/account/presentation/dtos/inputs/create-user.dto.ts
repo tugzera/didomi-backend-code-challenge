@@ -1,33 +1,24 @@
-import { ApiProperty } from '@nestjs/swagger';
 import {
-  IsEmail,
-  IsNotEmpty,
-  IsString,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
+  EmailDecorator,
+  FirstNameDecorator,
+  LastNameDecorator,
+  PhoneNumberDecorator,
+} from '@shared/presentation/decorators';
 import { PasswordDecorator } from '../../../../shared/presentation/decorators/password.decorator';
 
 export class CreateUserDto {
-  @ApiProperty({ example: 'Clark' })
-  @IsNotEmpty()
-  @IsString()
-  @MinLength(3)
-  @MaxLength(100)
+  @FirstNameDecorator()
   firstName: string;
 
-  @ApiProperty({ example: 'Kent' })
-  @IsNotEmpty()
-  @IsString()
-  @MinLength(3)
-  @MaxLength(100)
+  @LastNameDecorator()
   lastName: string;
 
-  @ApiProperty({ example: 'email@teste.com' })
-  @IsNotEmpty()
-  @IsEmail()
+  @EmailDecorator()
   email: string;
 
   @PasswordDecorator()
   password: string;
+
+  @PhoneNumberDecorator(false)
+  phoneNumber?: string;
 }

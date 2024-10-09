@@ -27,6 +27,7 @@ export class UpdateUserCommand implements UpdateUserCommand.Contract {
       firstName: input.firstName,
       lastName: input.lastName,
       password: passwordHash,
+      phoneNumber: input.phoneNumber,
     });
     await this.userRepository.save(user);
     return {
@@ -69,6 +70,7 @@ export namespace UpdateUserCommand {
     lastName?: string;
     email?: string;
     password?: string;
+    phoneNumber?: string;
   };
   export type Output = Promise<Response>;
   type Response = {

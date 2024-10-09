@@ -1,33 +1,24 @@
-import { ApiProperty } from '@nestjs/swagger';
 import {
-  IsEmail,
-  IsOptional,
-  IsString,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
-import { PasswordDecorator } from '../../../../shared/presentation/decorators/password.decorator';
+  EmailDecorator,
+  FirstNameDecorator,
+  LastNameDecorator,
+  PasswordDecorator,
+  PhoneNumberDecorator,
+} from '@shared/presentation/decorators';
 
 export class UpdateUserDto {
-  @ApiProperty({ example: 'Clark' })
-  @IsOptional()
-  @IsString()
-  @MinLength(3)
-  @MaxLength(100)
+  @FirstNameDecorator(false)
   firstName?: string;
 
-  @ApiProperty({ example: 'Kent' })
-  @IsOptional()
-  @IsString()
-  @MinLength(3)
-  @MaxLength(100)
+  @LastNameDecorator(false)
   lastName?: string;
 
-  @ApiProperty({ example: 'email@teste.com' })
-  @IsOptional()
-  @IsEmail()
+  @EmailDecorator(false)
   email?: string;
 
   @PasswordDecorator(false)
   password?: string;
+
+  @PhoneNumberDecorator(false)
+  phoneNumber?: string;
 }

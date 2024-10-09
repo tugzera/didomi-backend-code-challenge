@@ -1,3 +1,13 @@
 {
-  "cSpell.words": ["dtos", "typeorm"]
+  "cSpell.words": ["dtos", "typeorm"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.parameterHints.enabled": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  }
 }

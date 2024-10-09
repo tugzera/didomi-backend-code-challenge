@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.2" use-changelog="false" last-position="23,0" last-zoom="1" max-obj-count="6"
+<dbmodel pgmodeler-ver="1.0.2" use-changelog="false" last-position="0,0" last-zoom="0.8" max-obj-count="6"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -33,7 +33,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 		<comment> <![CDATA[The data of register creation.]]> </comment>
 	</column>
-	<column name="updated_at" not-null="true">
+	<column name="updated_at">
 		<type name="timestamp" length="0"/>
 		<comment> <![CDATA[The data of register update.]]> </comment>
 	</column>
@@ -83,7 +83,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 		<comment> <![CDATA[The data of register creation.]]> </comment>
 	</column>
-	<column name="updated_at" not-null="true">
+	<column name="updated_at">
 		<type name="timestamp" length="0"/>
 		<comment> <![CDATA[The data of register update.]]> </comment>
 	</column>
@@ -142,7 +142,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 		<comment> <![CDATA[The data of register creation.]]> </comment>
 	</column>
-	<column name="updated_at" not-null="true">
+	<column name="updated_at">
 		<type name="timestamp" length="0"/>
 		<comment> <![CDATA[The data of register update.]]> </comment>
 	</column>
@@ -172,7 +172,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 		<comment> <![CDATA[The data of register creation.]]> </comment>
 	</column>
-	<column name="updated_at" not-null="true">
+	<column name="updated_at">
 		<type name="timestamp" length="0"/>
 		<comment> <![CDATA[The data of register update.]]> </comment>
 	</column>
@@ -312,7 +312,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 		<comment> <![CDATA[The data of register creation.]]> </comment>
 	</column>
-	<column name="updated_at" not-null="true">
+	<column name="updated_at">
 		<type name="timestamp" length="0"/>
 		<comment> <![CDATA[The data of register update.]]> </comment>
 	</column>

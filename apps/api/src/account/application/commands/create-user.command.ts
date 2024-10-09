@@ -1,5 +1,8 @@
 import { User } from '@account/domain/entities/user';
-import { UserEmailAlreadyRegisteredException } from '@account/domain/exceptions';
+import {
+  UserEmailAlreadyRegisteredException,
+  UserPhoneNumberAlreadyRegisteredException,
+} from '@account/domain/exceptions';
 import { UserRepository } from '@account/domain/repositories';
 import { HashGenerator } from '@shared/domain/contracts';
 
@@ -11,16 +14,16 @@ export class CreateUserCommand implements CreateUserCommand.Contract {
 
   async execute(input: CreateUserCommand.Input): CreateUserCommand.Output {
     const passwordHash = this.hashGenerator.hash(input.password);
-    const userAlreadyRegistered = await this.userRepository.findByParam({
-      key: 'email',
-      value: input.email,
+    await this.validateUniqueFields({
+      email: input.email,
+      phoneNumber: input.phoneNumber,
     });
-    if (userAlreadyRegistered) throw new UserEmailAlreadyRegisteredException();
     const user = User.create({
       email: input.email,
       firstName: input.firstName,
       lastName: input.lastName,
       password: passwordHash,
+      phoneNumber: input.phoneNumber,
     });
     await this.userRepository.save(user);
     return {
@@ -28,7 +31,28 @@ export class CreateUserCommand implements CreateUserCommand.Contract {
       email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,
+      consents: [],
     };
+  }
+
+  private async validateUniqueFields(input: {
+    email: string;
+    phoneNumber?: string;
+  }) {
+    const userAlreadyRegistered = await this.userRepository.findByParam({
+      key: 'email',
+      value: input.email,
+    });
+    if (userAlreadyRegistered) throw new UserEmailAlreadyRegisteredException();
+    if (input.phoneNumber) {
+      const phoneNumberAlreadyRegistered =
+        await this.userRepository.findByParam({
+          key: 'phoneNumber',
+          value: input.phoneNumber,
+        });
+      if (phoneNumberAlreadyRegistered)
+        throw new UserPhoneNumberAlreadyRegisteredException();
+    }
   }
 }
 
@@ -41,12 +65,18 @@ export namespace CreateUserCommand {
     lastName: string;
     email: string;
     password: string;
+    phoneNumber?: string;
   };
-  export type Output = Promise<Response>;
+  type Consent = {
+    id: string;
+    enabled: boolean;
+  };
   type Response = {
     id: string;
     firstName: string;
     lastName: string;
     email: string;
+    consents: Consent[];
   };
+  export type Output = Promise<Response>;
 }

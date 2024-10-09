@@ -32,18 +32,22 @@ describe('AccountController (e2e)', () => {
           expect(body).toStrictEqual({
             error: {
               firstName: [
-                'must be shorter than or equal to 100 characters',
-                'must be longer than or equal to 3 characters',
-                'must be a string',
                 'should not be empty',
+                'must be a string',
+                'must be longer than or equal to 2 characters',
+                'must be shorter than or equal to 100 characters',
               ],
               lastName: [
-                'must be shorter than or equal to 100 characters',
-                'must be longer than or equal to 3 characters',
-                'must be a string',
                 'should not be empty',
+                'must be a string',
+                'must be longer than or equal to 2 characters',
+                'must be shorter than or equal to 100 characters',
               ],
-              email: ['must be an email', 'should not be empty'],
+              email: [
+                'should not be empty',
+                'must be an email',
+                'must be shorter than or equal to 100 characters',
+              ],
               password: [
                 'should not be empty',
                 'must be a string',
@@ -185,7 +189,7 @@ describe('AccountController (e2e)', () => {
 
   describe('@PATCH /accounts', () => {
     const url = '/accounts/:userId';
-    it('should throw UnprocessableEntityException if provided userId is not an valid uuid', async () => {
+    it('should throw BadRequestException if provided userId is not an valid uuid', async () => {
       await agent(app.getHttpServer())
         .patch(url)
         .expect(({ status }) => {
@@ -197,18 +201,25 @@ describe('AccountController (e2e)', () => {
       const userId = randomUUID();
       await agent(app.getHttpServer())
         .patch(url.replace(':userId', userId))
-        .send({ email: '', firstName: '', lastName: '', password: '' })
+        .send({
+          email: '',
+          firstName: '',
+          lastName: '',
+          password: '',
+          phoneNumber: '',
+        })
         .expect(({ status, body }) => {
           expect(status).toBe(HttpStatus.UNPROCESSABLE_ENTITY);
           expect(body).toStrictEqual({
             error: {
-              firstName: ['must be longer than or equal to 3 characters'],
-              lastName: ['must be longer than or equal to 3 characters'],
+              firstName: ['must be longer than or equal to 2 characters'],
+              lastName: ['must be longer than or equal to 2 characters'],
               email: ['must be an email'],
               password: [
                 'must be longer than or equal to 8 characters',
                 'too weak',
               ],
+              phoneNumber: ['must be a valid phone number'],
             },
             code: 'UnprocessableEntityException',
           });

@@ -19,6 +19,13 @@ export class UserTypeormModel extends BaseTypeormModel {
   @Column('character varying', { name: 'password_hash', length: 255 })
   passwordHash: string;
 
+  @Column('character varying', {
+    name: 'phone_number',
+    nullable: true,
+    length: 30,
+  })
+  phoneNumber: string | null;
+
   @OneToMany(
     () => UserNotificationsConsentTypeormModel,
     (userNotificationsConsents) => userNotificationsConsents.user,

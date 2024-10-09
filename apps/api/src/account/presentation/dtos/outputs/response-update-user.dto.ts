@@ -1,21 +1,23 @@
 import { ApiProperty } from '@nestjs/swagger';
+import {
+  EmailDecorator,
+  FirstNameDecorator,
+  LastNameDecorator,
+  UuidDecorator,
+} from '@shared/presentation/decorators';
 import { Expose } from 'class-transformer';
 
 export class ResponseUpdateUserDto {
-  @ApiProperty({ example: '123e4567-e89b-12d3-a456-426614174000' })
-  @Expose()
+  @UuidDecorator()
   id: string;
 
-  @ApiProperty({ example: 'Clark' })
-  @Expose()
+  @FirstNameDecorator()
   firstName: string;
 
-  @ApiProperty({ example: 'Kent' })
-  @Expose()
+  @LastNameDecorator()
   lastName: string;
 
-  @ApiProperty({ example: 'superman@teste.com' })
-  @Expose()
+  @EmailDecorator()
   email: string;
 
   @ApiProperty({ example: '2024-10-09T14:24:55.157Z' })

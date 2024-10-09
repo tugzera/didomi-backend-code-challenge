@@ -59,22 +59,22 @@ export class AccountController {
   @ApiCreatedResponse({ type: ResponseCreateUserDto })
   @Post()
   async handleCreateUser(
-    @Body() input: CreateUserDto,
+    @Body() dto: CreateUserDto,
   ): Promise<ResponseCreateUserDto> {
-    return this.createUser.execute(input);
+    return this.createUser.execute(dto);
   }
 
   @ApiPaginatedResponse({ model: ResponseGetUserListDto })
   @Get()
   async handleGetUserList(
-    @Query() input: GetUserListDto,
+    @Query() dto: GetUserListDto,
   ): Promise<PaginationResponseProps<ResponseGetUserListDto>> {
     const response = await this.getUserList.execute({
-      page: input.page || 1,
-      pageSize: input.pageSize || 10,
-      sortBy: input.sortBy as keyof User,
-      searchString: input.searchString,
-      sortDirection: input.sortDirection as SortDirection,
+      page: dto.page || 1,
+      pageSize: dto.pageSize || 10,
+      sortBy: dto.sortBy as keyof User,
+      searchString: dto.searchString,
+      sortDirection: dto.sortDirection as SortDirection,
     });
     return response;
   }
@@ -84,9 +84,9 @@ export class AccountController {
   async handleUpdateUser(
     @Param('userId', ParseUUIDPipe)
     userId: string,
-    @Body() input: UpdateUserDto,
+    @Body() dto: UpdateUserDto,
   ): Promise<ResponseUpdateUserDto> {
-    return this.updateUser.execute({ ...input, userId });
+    return this.updateUser.execute({ ...dto, userId });
   }
 
   @ApiNoContentResponse()
