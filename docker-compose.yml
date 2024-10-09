@@ -1,0 +1,34 @@
+version: "3.5"
+
+services:
+  databaseapi:
+    container_name: databaseapi
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    volumes:
+      - .docker/db/:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+
+  databaseapitest:
+    container_name: databaseapitest
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    volumes:
+      - .docker/testdb/:/data/postgres
+    ports:
+      - "5433:5432"
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge

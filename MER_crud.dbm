@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.0.2" use-changelog="false" last-position="23,0" last-zoom="1" max-obj-count="6"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="crud-database" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="template" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="152" y="143"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+		<comment> <![CDATA[The database unique identifier.]]> </comment>
+	</column>
+	<column name="alternative_id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="bigint" length="0"/>
+		<comment> <![CDATA[The numeric identifier of the register.]]> </comment>
+	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+		<comment> <![CDATA[The data of register creation.]]> </comment>
+	</column>
+	<column name="updated_at" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment> <![CDATA[The data of register update.]]> </comment>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+		<comment> <![CDATA[The field to handle soft deletes.]]> </comment>
+	</column>
+	<constraint name="pk__template" type="pk-constr" table="public.template">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="users" layers="0" collapse-mode="2" max-obj-count="12" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="616" y="101"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+		<comment> <![CDATA[The database unique identifier.]]> </comment>
+	</column>
+	<column name="alternative_id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="bigint" length="0"/>
+		<comment> <![CDATA[The numeric identifier of the register.]]> </comment>
+	</column>
+	<column name="email" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment> <![CDATA[The user email.]]> </comment>
+	</column>
+	<column name="first_name" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment> <![CDATA[The user firstname.]]> </comment>
+	</column>
+	<column name="last_name" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment> <![CDATA[The user lastname.]]> </comment>
+	</column>
+	<column name="password_hash" not-null="true">
+		<type name="varchar" length="256"/>
+		<comment> <![CDATA[The user password hash.]]> </comment>
+	</column>
+	<column name="phone_number">
+		<type name="varchar" length="30"/>
+		<comment> <![CDATA[The user mobile phone number.]]> </comment>
+	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+		<comment> <![CDATA[The data of register creation.]]> </comment>
+	</column>
+	<column name="updated_at" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment> <![CDATA[The data of register update.]]> </comment>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+		<comment> <![CDATA[The field to handle soft deletes.]]> </comment>
+	</column>
+	<constraint name="pk__users" type="pk-constr" table="public.users">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<index name="idx__part__uq__user_email" table="public.users"
+	 concurrent="false" unique="true" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="email"/>
+		</idxelement>
+		<idxelement use-sorting="true" nulls-first="true" asc-order="true">
+			<column name="deleted_at"/>
+		</idxelement>
+</index>
+
+<index name="idx__uq__user_email" table="public.users"
+	 concurrent="false" unique="true" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="email"/>
+		</idxelement>
+	<predicate> <![CDATA[deleted_at is null]]> </predicate>
+</index>
+
+<table name="notification_types" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment> <![CDATA[The notification types database. Ex: sms_notification , email_notification, phone_call.]]> </comment>
+	<position x="1578" y="91"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+		<comment> <![CDATA[The database unique identifier.]]> </comment>
+	</column>
+	<column name="alternative_id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="bigint" length="0"/>
+		<comment> <![CDATA[The numeric identifier of the register.]]> </comment>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment> <![CDATA[The notification type display name.]]> </comment>
+	</column>
+	<column name="slug" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment> <![CDATA[The notification type slug. Ex: sms_notification, email_notification.]]> </comment>
+	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+		<comment> <![CDATA[The data of register creation.]]> </comment>
+	</column>
+	<column name="updated_at" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment> <![CDATA[The data of register update.]]> </comment>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+		<comment> <![CDATA[The field to handle soft deletes.]]> </comment>
+	</column>
+	<constraint name="pk__notification_types" type="pk-constr" table="public.notification_types">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="user_notifications_consents" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1071" y="479"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+		<comment> <![CDATA[The database unique identifier.]]> </comment>
+	</column>
+	<column name="alternative_id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="bigint" length="0"/>
+		<comment> <![CDATA[The numeric identifier of the register.]]> </comment>
+	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+		<comment> <![CDATA[The data of register creation.]]> </comment>
+	</column>
+	<column name="updated_at" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment> <![CDATA[The data of register update.]]> </comment>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+		<comment> <![CDATA[The field to handle soft deletes.]]> </comment>
+	</column>
+	<constraint name="pk__user_notifications_consents" type="pk-constr" table="public.user_notifications_consents">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="notification_type_id" index="3"/>
+		<object name="user_id" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="fk_notification_types" index="2"/>
+		<object name="fk_users_user_notifications_consents" index="1"/>
+	</customidxs>
+</table>
+
+<index name="idx__uq__notification_type_name" table="public.notification_types"
+	 concurrent="false" unique="true" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="name"/>
+		</idxelement>
+	<predicate> <![CDATA[deleted_at is null]]> </predicate>
+</index>
+
+<index name="idx__part__uq__notification_type_name" table="public.notification_types"
+	 concurrent="false" unique="true" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="name"/>
+		</idxelement>
+		<idxelement use-sorting="true" nulls-first="true" asc-order="true">
+			<column name="deleted_at"/>
+		</idxelement>
+</index>
+
+<index name="idx__uq__notification_type_name_slug" table="public.notification_types"
+	 concurrent="false" unique="true" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="slug"/>
+		</idxelement>
+	<predicate> <![CDATA[deleted_at is null]]> </predicate>
+</index>
+
+<index name="idx__part__uq__notification_type_name_slug" table="public.notification_types"
+	 concurrent="false" unique="true" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="slug"/>
+		</idxelement>
+		<idxelement use-sorting="true" nulls-first="true" asc-order="true">
+			<column name="deleted_at"/>
+		</idxelement>
+</index>
+
+<relationship name="user__has__many__user_notifications_consents" type="rel1n" layers="0"
+	 src-col-pattern="user_id"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="fk_{st}_{dt}"
+	 custom-color="#2c0712"
+	 src-table="public.users"
+	 dst-table="public.user_notifications_consents"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="notification_types_has_many_user_notifications_consents" type="rel1n" layers="0"
+	 src-col-pattern="notification_type_id"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="fk_notification_types"
+	 custom-color="#9f8378"
+	 src-table="public.notification_types"
+	 dst-table="public.user_notifications_consents"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<index name="idx__uq__user_notification_consents" table="public.user_notifications_consents"
+	 concurrent="false" unique="true" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="user_id"/>
+		</idxelement>
+		<idxelement use-sorting="false">
+			<column name="notification_type_id"/>
+		</idxelement>
+	<predicate> <![CDATA[deleted_at is null]]> </predicate>
+</index>
+
+<index name="idx__part__uq__user_notification_consents" table="public.user_notifications_consents"
+	 concurrent="false" unique="true" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="user_id"/>
+		</idxelement>
+		<idxelement use-sorting="false">
+			<column name="notification_type_id"/>
+		</idxelement>
+		<idxelement use-sorting="true" nulls-first="true" asc-order="true">
+			<column name="deleted_at"/>
+		</idxelement>
+</index>
+
+<table name="events" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="154" y="620"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+		<comment> <![CDATA[The database unique identifier.]]> </comment>
+	</column>
+	<column name="alternative_id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="bigint" length="0"/>
+		<comment> <![CDATA[The numeric identifier of the register.]]> </comment>
+	</column>
+	<column name="event_type">
+		<type name="varchar" length="100"/>
+		<comment> <![CDATA[The event identifier  type.]]> </comment>
+	</column>
+	<column name="payload" not-null="true">
+		<type name="jsonb" length="0"/>
+		<comment> <![CDATA[The event payload.]]> </comment>
+	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+		<comment> <![CDATA[The data of register creation.]]> </comment>
+	</column>
+	<column name="updated_at" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment> <![CDATA[The data of register update.]]> </comment>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+		<comment> <![CDATA[The field to handle soft deletes.]]> </comment>
+	</column>
+	<constraint name="pk__events" type="pk-constr" table="public.events">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+</dbmodel>
