@@ -9,7 +9,7 @@ export class GetUserListProviderFactory {
   static generate(): Provider {
     return {
       provide: AccountProvider.QUERIES.GET_USER_LIST,
-      useFactory: (connection: DataSource): GetUserListQuery => {
+      useFactory: (connection: DataSource): GetUserListQuery.Contract => {
         return new GetUserListTypeormQuery(connection);
       },
       inject: [SharedProvider.DATABASE_CONNECTION],

@@ -49,7 +49,7 @@ export class AccountController {
     @Inject(AccountProvider.COMMANDS.CREATE_USER)
     private createUser: CreateUserCommand.Contract,
     @Inject(AccountProvider.QUERIES.GET_USER_LIST)
-    private getUserList: GetUserListQuery,
+    private getUserList: GetUserListQuery.Contract,
     @Inject(AccountProvider.COMMANDS.UPDATE_USER)
     private updateUser: UpdateUserCommand.Contract,
     @Inject(AccountProvider.COMMANDS.DELETE_USER)

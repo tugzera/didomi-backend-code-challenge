@@ -4,14 +4,22 @@ const project = resolve(process.cwd(), "tsconfig.json");
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  extends: ["eslint:recommended", "prettier", "turbo"],
-  plugins: ["only-warn"],
-  globals: {
-    React: true,
-    JSX: true,
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "turbo",
+  ],
+  plugins: ["only-warn", "@typescript-eslint", "plugin:prettier/recommended"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project,
+    tsconfigRootDir: process.cwd(),
+    sourceType: "module",
   },
   env: {
     node: true,
+    jest: true,
   },
   settings: {
     "import/resolver": {
@@ -20,12 +28,21 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: [
-    // Ignore dotfiles
-    ".*.js",
-    "node_modules/",
-    "dist/",
-  ],
+  ignorePatterns: [".*.js", "node_modules/", "dist/"],
+  rules: {
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        argsIgnorePattern: "_",
+      },
+    ],
+    "prettier/prettier": ["error", { singleQuote: true, trailingComma: "all" }],
+    "no-console": "error",
+  },
   overrides: [
     {
       files: ["*.js?(x)", "*.ts?(x)"],
