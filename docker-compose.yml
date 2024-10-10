@@ -5,8 +5,8 @@ services:
     image: rabbitmq:4.0-management-alpine
     container_name: rabbitmq
     ports:
-      - '5672:5672' # RabbitMQ broker port
-      - '15672:15672' # RabbitMQ management console
+      - '5672:5672'
+      - '15672:15672'
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
@@ -14,33 +14,6 @@ services:
     volumes:
       - .docker/rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
       - ./.docker/rabbitmq/definitions.json:/etc/rabbitmq/definitons.json:ro
-  # databaseevents:
-  #   container_name: databaseevents
-  #   image: postgres:14
-  #   environment:
-  #     POSTGRES_USER: postgres
-  #     POSTGRES_PASSWORD: postgres
-  #     PGDATA: /data/postgres
-  #   volumes:
-  #     - .docker/db/:/data/postgres
-  #   ports:
-  #     - '5432:5432'
-  #   networks:
-  #     - postgres
-
-  # databaseeventstest:
-  #   container_name: databaseeventstest
-  #   image: postgres:14
-  #   environment:
-  #     POSTGRES_USER: postgres
-  #     POSTGRES_PASSWORD: postgres
-  #     PGDATA: /data/postgres
-  #   volumes:
-  #     - .docker/testdb/:/data/postgres
-  #   ports:
-  #     - '5433:5432'
-  #   networks:
-  #     - postgres
 
   databaseapi:
     container_name: databaseapi

@@ -19,7 +19,7 @@ CREATE TABLE public.template (
 	id uuid NOT NULL,
 	alternative_id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ,
 	created_at timestamp with time zone NOT NULL,
-	updated_at timestamp,
+	updated_at timestamp with time zone,
 	deleted_at timestamp with time zone,
 	CONSTRAINT pk__template PRIMARY KEY (id)
 );
@@ -48,7 +48,7 @@ CREATE TABLE public.users (
 	password_hash varchar(256) NOT NULL,
 	phone_number varchar(30),
 	created_at timestamp with time zone NOT NULL,
-	updated_at timestamp,
+	updated_at timestamp with time zone,
 	deleted_at timestamp with time zone,
 	CONSTRAINT pk__users PRIMARY KEY (id)
 );
@@ -104,7 +104,7 @@ CREATE TABLE public.notification_types (
 	name varchar(100) NOT NULL,
 	slug varchar(100) NOT NULL,
 	created_at timestamp with time zone NOT NULL,
-	updated_at timestamp,
+	updated_at timestamp with time zone,
 	deleted_at timestamp with time zone,
 	CONSTRAINT pk__notification_types PRIMARY KEY (id)
 );
@@ -136,7 +136,7 @@ CREATE TABLE public.user_notifications_consents (
 	user_id uuid NOT NULL,
 	notification_type_id uuid NOT NULL,
 	created_at timestamp with time zone NOT NULL,
-	updated_at timestamp,
+	updated_at timestamp with time zone,
 	deleted_at timestamp with time zone,
 	CONSTRAINT pk__user_notifications_consents PRIMARY KEY (id)
 );

@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.2" use-changelog="false" last-position="0,0" last-zoom="0.8" max-obj-count="6"
+<dbmodel pgmodeler-ver="1.0.2" use-changelog="false" last-position="0,0" last-zoom="0.8" max-obj-count="4"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -34,7 +34,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<comment> <![CDATA[The data of register creation.]]> </comment>
 	</column>
 	<column name="updated_at">
-		<type name="timestamp" length="0"/>
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 		<comment> <![CDATA[The data of register update.]]> </comment>
 	</column>
 	<column name="deleted_at">
@@ -84,7 +84,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<comment> <![CDATA[The data of register creation.]]> </comment>
 	</column>
 	<column name="updated_at">
-		<type name="timestamp" length="0"/>
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 		<comment> <![CDATA[The data of register update.]]> </comment>
 	</column>
 	<column name="deleted_at">
@@ -120,7 +120,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="public"/>
 	<role name="postgres"/>
 	<comment> <![CDATA[The notification types database. Ex: sms_notification , email_notification, phone_call.]]> </comment>
-	<position x="1578" y="91"/>
+	<position x="1578" y="89.75"/>
 	<column name="id" not-null="true">
 		<type name="uuid" length="0"/>
 		<comment> <![CDATA[The database unique identifier.]]> </comment>
@@ -143,7 +143,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<comment> <![CDATA[The data of register creation.]]> </comment>
 	</column>
 	<column name="updated_at">
-		<type name="timestamp" length="0"/>
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 		<comment> <![CDATA[The data of register update.]]> </comment>
 	</column>
 	<column name="deleted_at">
@@ -172,7 +172,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 		<comment> <![CDATA[The data of register creation.]]> </comment>
 	</column>
-	<column name="updated_at">
+	<column name="updated_at" not-null="true">
 		<type name="timestamp" length="0"/>
 		<comment> <![CDATA[The data of register update.]]> </comment>
 	</column>
@@ -286,43 +286,5 @@ CAUTION: Do not modify this file unless you know what you are doing.
 			<column name="deleted_at"/>
 		</idxelement>
 </index>
-
-<table name="events" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="154" y="620"/>
-	<column name="id" not-null="true">
-		<type name="uuid" length="0"/>
-		<comment> <![CDATA[The database unique identifier.]]> </comment>
-	</column>
-	<column name="alternative_id" not-null="true"
-	 identity-type="ALWAYS">
-		<type name="bigint" length="0"/>
-		<comment> <![CDATA[The numeric identifier of the register.]]> </comment>
-	</column>
-	<column name="event_type">
-		<type name="varchar" length="100"/>
-		<comment> <![CDATA[The event identifier  type.]]> </comment>
-	</column>
-	<column name="payload" not-null="true">
-		<type name="jsonb" length="0"/>
-		<comment> <![CDATA[The event payload.]]> </comment>
-	</column>
-	<column name="created_at" not-null="true">
-		<type name="timestamp with time zone" length="0" with-timezone="true"/>
-		<comment> <![CDATA[The data of register creation.]]> </comment>
-	</column>
-	<column name="updated_at">
-		<type name="timestamp" length="0"/>
-		<comment> <![CDATA[The data of register update.]]> </comment>
-	</column>
-	<column name="deleted_at">
-		<type name="timestamp with time zone" length="0" with-timezone="true"/>
-		<comment> <![CDATA[The field to handle soft deletes.]]> </comment>
-	</column>
-	<constraint name="pk__events" type="pk-constr" table="public.events">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
 
 </dbmodel>

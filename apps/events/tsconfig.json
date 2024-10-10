@@ -1,0 +1,15 @@
+{
+  "extends": "../../packages/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@events/*": ["src/events/*"],
+      "@shared/*": ["src/shared/*"],
+      "@src/*": ["src/*"],
+      "@test/*": ["test/*"]
+    }
+  },
+  "exclude": ["node_modules", ".build", ".eslintrc.js", "dist"],
+  "include": ["src", "test"]
+}
