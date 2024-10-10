@@ -6,7 +6,11 @@ import { IsNotEmpty, IsOptional, IsUUID } from 'class-validator';
 export function UuidDecorator(isRequired = true) {
   return applyDecorators(
     Expose(),
-    ApiProperty({ name: 'lastName', example: 'Kent', nullable: !isRequired }),
+    ApiProperty({
+      name: 'id',
+      example: 'f293a35e-47e1-46e6-adf4-6883a731aabf',
+      nullable: !isRequired,
+    }),
     isRequired ? IsNotEmpty() : IsOptional(),
     IsUUID(),
   );

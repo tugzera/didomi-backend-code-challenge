@@ -5,8 +5,7 @@ import { HttpExceptionFilter } from './shared/infra/filters/http-exception.filte
 
 export const makeApp = (app: INestApplication) => {
   const config = new DocumentBuilder()
-    .setTitle('API')
-    .setDescription('NestJS API')
+    .setTitle('CRUD API')
     .setVersion('1.0')
     .addBearerAuth()
     .build();

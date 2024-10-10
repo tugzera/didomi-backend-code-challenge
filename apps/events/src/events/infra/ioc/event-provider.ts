@@ -5,4 +5,7 @@ export namespace EventProvider {
   export const REPOSITORIES = {
     EVENT_REPOSITORY: Symbol('EVENT_REPOSITORY'),
   } as const;
+  export const COMMANDS = {
+    UPDATE_NOTIFICATION_CONSENTS: Symbol('UPDATE_NOTIFICATION_CONSENTS'),
+  } as const;
 }
