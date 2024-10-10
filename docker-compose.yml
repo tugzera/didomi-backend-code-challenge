@@ -14,20 +14,22 @@ services:
     volumes:
       - .docker/rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
       - ./.docker/rabbitmq/definitions.json:/etc/rabbitmq/definitons.json:ro
+    networks:
+      - app-network
 
   databaseapi:
     container_name: databaseapi
     image: postgres:14
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      PGDATA: /data/postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/data/postgres
     volumes:
       - .docker/db/:/data/postgres
     ports:
       - '5432:5432'
     networks:
-      - postgres
+      - app-network
 
   databaseapitest:
     container_name: databaseapitest
@@ -41,8 +43,36 @@ services:
     ports:
       - '5433:5432'
     networks:
-      - postgres
+      - app-network
+
+  databaseevents:
+    container_name: databaseevents
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/data/postgres
+    volumes:
+      - .docker/dbevents/:/data/postgres
+    ports:
+      - '5434:5432'
+    networks:
+      - app-network
+
+  databaseeventstest:
+    container_name: databaseeventstest
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    volumes:
+      - .docker/testdbevents/:/data/postgres
+    ports:
+      - '5435:5432'
+    networks:
+      - app-network
 
 networks:
-  postgres:
+  app-network:
     driver: bridge

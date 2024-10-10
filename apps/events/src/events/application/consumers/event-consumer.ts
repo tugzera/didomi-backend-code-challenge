@@ -1,7 +1,16 @@
+import { Event } from '@events/domain/entities';
+import { EventRepository } from '@events/domain/repositories';
+
 export class EventConsumer implements EventConsumer.Contract {
+  constructor(private eventRepository: EventRepository) {}
+
   async execute(input: EventConsumer.Input): EventConsumer.Output {
-    console.log('CHEGOU', input);
-    throw new Error('FALHOU');
+    const event = Event.create({
+      eventType: input.eventType,
+      payload: input.payload,
+    });
+    console.log('HERE', event);
+    await this.eventRepository.save(event);
   }
 }
 

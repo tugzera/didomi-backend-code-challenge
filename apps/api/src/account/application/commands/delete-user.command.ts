@@ -1,8 +1,12 @@
 import { UserNotFoundException } from '@account/domain/exceptions';
 import { UserRepository } from '@account/domain/repositories';
+import { EventHandler } from '@shared/domain/contracts';
 
 export class DeleteUserCommand implements DeleteUserCommand.Contract {
-  constructor(private userRepository: UserRepository) {}
+  constructor(
+    private userRepository: UserRepository,
+    private eventHandler: EventHandler,
+  ) {}
 
   async execute(input: DeleteUserCommand.Input): DeleteUserCommand.Output {
     const user = await this.userRepository.findByParam({
@@ -11,6 +15,11 @@ export class DeleteUserCommand implements DeleteUserCommand.Contract {
     });
     if (!user) throw new UserNotFoundException();
     await this.userRepository.softDelete(user.id);
+    await this.eventHandler.send({
+      eventType: 'USER_DELETED',
+      queueName: 'events_queue',
+      payload: input,
+    });
   }
 }
 

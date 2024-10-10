@@ -1,8 +1,8 @@
-export interface EventHandler<T = any> {
-  send(event: EventHandler.EventInput<T>): Promise<void>;
-  consume(
+export interface EventHandler {
+  send<T = any>(event: EventHandler.EventInput<T>): Promise<void>;
+  consume<T = any>(
     queueName: string,
-    callback: (payload: T) => Promise<void>,
+    consumer: EventHandler.Consumer<T>,
   ): Promise<void>;
 }
 
@@ -12,4 +12,7 @@ export namespace EventHandler {
     queueName: string;
     payload: T;
   };
+  export interface Consumer<T = any> {
+    execute(input: T): Promise<void>;
+  }
 }

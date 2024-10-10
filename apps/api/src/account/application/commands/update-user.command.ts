@@ -3,12 +3,13 @@ import {
   UserNotFoundException,
 } from '@account/domain/exceptions';
 import { UserRepository } from '@account/domain/repositories';
-import { HashGenerator } from '@shared/domain/contracts';
+import { EventHandler, HashGenerator } from '@shared/domain/contracts';
 
 export class UpdateUserCommand implements UpdateUserCommand.Contract {
   constructor(
     private userRepository: UserRepository,
     private hashGenerator: HashGenerator,
+    private eventHandler: EventHandler,
   ) {}
 
   async execute(input: UpdateUserCommand.Input): UpdateUserCommand.Output {
@@ -30,6 +31,11 @@ export class UpdateUserCommand implements UpdateUserCommand.Contract {
       phoneNumber: input.phoneNumber,
     });
     await this.userRepository.save(user);
+    await this.eventHandler.send({
+      eventType: 'USER_UPDATED',
+      queueName: 'events_queue',
+      payload: input,
+    });
     return {
       id: user.id,
       email: user.email,

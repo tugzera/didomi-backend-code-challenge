@@ -19,7 +19,7 @@ CREATE TABLE public.template (
 	id uuid NOT NULL,
 	alternative_id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ,
 	created_at timestamp with time zone NOT NULL,
-	updated_at timestamp with time zone NOT NULL,
+	updated_at timestamp with time zone,
 	deleted_at timestamp with time zone,
 	CONSTRAINT pk__template PRIMARY KEY (id)
 );

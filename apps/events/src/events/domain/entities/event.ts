@@ -8,4 +8,11 @@ export class Event extends BaseEntity {
     super(props);
     Object.assign(this, props);
   }
+
+  static create(props: { eventType: string; payload: object }): Event {
+    return new Event({
+      eventType: props.eventType,
+      payload: props.payload,
+    });
+  }
 }
