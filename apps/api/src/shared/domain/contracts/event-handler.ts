@@ -14,6 +14,6 @@ export namespace EventHandler {
     routingKey?: string;
   };
   export interface Consumer<T> {
-    execute(input: T): Promise<void>;
+    execute(input: { eventType: string; payload: T }): Promise<void>;
   }
 }

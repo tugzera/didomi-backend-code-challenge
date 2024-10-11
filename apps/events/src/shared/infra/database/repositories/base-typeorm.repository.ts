@@ -20,7 +20,7 @@ export abstract class BaseTypeormRepository<
   constructor(
     connection: DataSource,
     model: EntityTarget<Model>,
-    mapper: BaseMapper,
+    mapper: BaseMapper<Entity, Model>,
   ) {
     this.repository = connection.getRepository(model);
     this.mapper = mapper;

@@ -49,7 +49,7 @@ export class RabbitMQEventHandlerAdapter implements EventHandler {
     }
   }
 
-  async send(event: EventHandler.EventInput): Promise<void> {
+  async send<T>(event: EventHandler.EventInput<T>): Promise<void> {
     if (!this.isConnected) throw new Error('Not connected to RabbitMQ');
     try {
       this.channel.publish(
@@ -68,9 +68,9 @@ export class RabbitMQEventHandlerAdapter implements EventHandler {
     }
   }
 
-  async consume(
+  async consume<T>(
     queueName: string,
-    consumer: EventHandler.Consumer,
+    consumer: EventHandler.Consumer<T>,
   ): Promise<void> {
     if (!this.isConnected) throw new Error('Not connected to RabbitMQ');
     try {
@@ -79,7 +79,7 @@ export class RabbitMQEventHandlerAdapter implements EventHandler {
         try {
           const messageText = message?.content?.toString();
           if (!message || !messageText) throw new Error('Message is empty');
-          const serializedMessage: { eventType: string; payload: object } =
+          const serializedMessage: { eventType: string; payload: T } =
             JSON.parse(messageText);
           this.logger.log(`Consuming event ${serializedMessage.eventType}`);
           this.logger.log(serializedMessage.payload);

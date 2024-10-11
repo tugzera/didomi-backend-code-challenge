@@ -9,11 +9,11 @@ export interface EventHandler {
 export namespace EventHandler {
   export type EventInput<T> = {
     eventType: string;
+    payload: T;
     queueName: string;
     routingKey?: string;
-    payload: T;
   };
   export interface Consumer<T> {
-    execute(input: T): Promise<void>;
+    execute(input: { eventType: string; payload: T }): Promise<void>;
   }
 }
