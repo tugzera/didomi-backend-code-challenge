@@ -1,5 +1,7 @@
 import { BaseRepository } from '@shared/domain/repositories';
 import { User } from '../entities/user';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface UserRepository extends BaseRepository<User> {}
+export interface UserRepository extends BaseRepository<User> {
+  getDetails(userId: string): Promise<User | null>;
+  syncNotificationConsents(user: User): Promise<void>;
+}

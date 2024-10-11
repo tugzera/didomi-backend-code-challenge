@@ -47,4 +47,9 @@ export class UserNotificationsConsentTypeormModel extends BaseTypeormModel {
   )
   @JoinColumn([{ name: 'user_id', referencedColumnName: 'id' }])
   user: Relation<UserTypeormModel>;
+
+  constructor(props: Partial<UserNotificationsConsentTypeormModel> = {}) {
+    super();
+    Object.assign(this, props);
+  }
 }

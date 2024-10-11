@@ -43,28 +43,46 @@
       "name": "events_queue",
       "vhost": "/",
       "durable": true,
-      "auto_delete": false,
-      "arguments": { "x-queue-type": "classic" }
+      "auto_delete": false
+    },
+    {
+      "name": "notification_consents_queue",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false
     }
   ],
   "exchanges": [
     {
-      "name": "events_exchange_fanout",
+      "name": "events_fanout_exchange",
       "vhost": "/",
       "type": "fanout",
       "durable": true,
-      "auto_delete": false,
-      "internal": false,
-      "arguments": {}
+      "auto_delete": false
+    },
+    {
+      "name": "crud_api_topic_exchange",
+      "vhost": "/",
+      "type": "topic",
+      "durable": true,
+      "auto_delete": false
     }
   ],
   "bindings": [
     {
-      "source": "events_exchange_fanout",
+      "source": "events_fanout_exchange",
       "vhost": "/",
       "destination": "events_queue",
       "destination_type": "queue",
       "routing_key": "",
+      "arguments": {}
+    },
+    {
+      "source": "crud_api_topic_exchange",
+      "vhost": "/",
+      "destination": "notification_consents_queue",
+      "destination_type": "queue",
+      "routing_key": "notifications.*",
       "arguments": {}
     }
   ]
