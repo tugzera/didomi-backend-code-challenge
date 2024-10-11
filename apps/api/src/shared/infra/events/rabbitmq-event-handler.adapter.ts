@@ -55,7 +55,12 @@ export class RabbitMQEventHandlerAdapter implements EventHandler {
       this.channel.publish(
         event.queueName,
         event.routingKey || '',
-        Buffer.from(JSON.stringify(event.payload)),
+        Buffer.from(
+          JSON.stringify({
+            eventType: event.eventType,
+            payload: event.payload,
+          }),
+        ),
       );
     } catch (error) {
       this.logger.error(error);

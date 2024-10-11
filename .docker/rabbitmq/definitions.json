@@ -82,7 +82,7 @@
       "vhost": "/",
       "destination": "notification_consents_queue",
       "destination_type": "queue",
-      "routing_key": "notifications.*",
+      "routing_key": "consents.*",
       "arguments": {}
     }
   ]

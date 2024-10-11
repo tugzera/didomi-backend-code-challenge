@@ -33,7 +33,7 @@ export class UpdateUserCommand implements UpdateUserCommand.Contract {
     await this.userRepository.save(user);
     await this.eventHandler.send({
       eventType: 'USER_UPDATED',
-      queueName: 'events_queue',
+      queueName: 'events_fanout_exchange',
       payload: input,
     });
     return {

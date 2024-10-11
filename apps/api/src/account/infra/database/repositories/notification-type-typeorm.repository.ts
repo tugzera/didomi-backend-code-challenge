@@ -8,6 +8,7 @@ export class NotificationTypeTypeormRepository
   implements NotificationTypeRepository
 {
   async findAllyBySlug(slugs: string[]): Promise<NotificationType[]> {
+    if (slugs.length === 0) return [];
     const models = await this.repository
       .createQueryBuilder('notificationTypes')
       .where('notificationTypes.slug IN (:...slugs)', { slugs })

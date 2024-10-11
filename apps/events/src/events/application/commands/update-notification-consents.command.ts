@@ -1,16 +1,27 @@
+import { Event } from '@events/domain/entities';
+import { EventRepository } from '@events/domain/repositories';
 import { EventHandler } from '@shared/domain/contracts';
 
 export class UpdateNotificationConsentsCommand
   implements UpdateNotificationConsentsCommand.Contract
 {
-  constructor(private eventHandler: EventHandler) {}
+  constructor(
+    private eventRepository: EventRepository,
+    private eventHandler: EventHandler,
+  ) {}
 
   async execute(
     input: UpdateNotificationConsentsCommand.Input,
   ): UpdateNotificationConsentsCommand.Output {
+    const event = Event.create({
+      eventType: 'NOTIFICATION_CONSENTS_UPDATED',
+      payload: input,
+    });
+    await this.eventRepository.save(event);
     await this.eventHandler.send({
       eventType: 'NOTIFICATION_CONSENTS_UPDATED',
-      queueName: 'events_queue',
+      queueName: 'crud_api_topic_exchange',
+      routingKey: `consents.${'NOTIFICATION_CONSENTS_UPDATED'}`,
       payload: input,
     });
   }

@@ -21,7 +21,7 @@ export class UpdateNotificationConsentConsumerProviderFactory {
           userRepository,
           notificationTypeRepository,
         );
-        await eventHandler.consume('events_queue', consumer);
+        await eventHandler.consume('notification_consents_queue', consumer);
         return consumer;
       },
       inject: [

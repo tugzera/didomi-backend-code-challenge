@@ -9,7 +9,6 @@ export class EventConsumer implements EventConsumer.Contract {
       eventType: input.eventType,
       payload: input.payload,
     });
-    console.log('HERE', event);
     await this.eventRepository.save(event);
   }
 }

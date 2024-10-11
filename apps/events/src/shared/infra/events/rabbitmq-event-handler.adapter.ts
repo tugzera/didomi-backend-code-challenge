@@ -52,8 +52,9 @@ export class RabbitMQEventHandlerAdapter implements EventHandler {
   async send(event: EventHandler.EventInput): Promise<void> {
     if (!this.isConnected) throw new Error('Not connected to RabbitMQ');
     try {
-      this.channel.sendToQueue(
+      this.channel.publish(
         event.queueName,
+        event.routingKey || '',
         Buffer.from(
           JSON.stringify({
             eventType: event.eventType,

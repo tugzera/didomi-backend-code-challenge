@@ -36,7 +36,7 @@ export class CreateUserCommand implements CreateUserCommand.Contract {
         password: passwordHash,
         phoneNumber: input.phoneNumber,
       },
-      queueName: 'events_queue',
+      queueName: 'events_fanout_exchange',
     });
     return {
       id: user.id,

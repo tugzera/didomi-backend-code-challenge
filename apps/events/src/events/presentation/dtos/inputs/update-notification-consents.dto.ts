@@ -17,12 +17,12 @@ class UserDto {
 }
 
 enum ConsentType {
-  EMAIL = 'email_notifications',
-  SMS = 'sms_notifications',
+  EMAIL = 'email_notification',
+  SMS = 'sms_notification',
 }
 
 class ConsentsDto {
-  @ApiProperty({ example: 'email_notifications' })
+  @ApiProperty({ example: 'email_notification' })
   @IsNotEmpty()
   @IsEnum(ConsentType)
   id: string;

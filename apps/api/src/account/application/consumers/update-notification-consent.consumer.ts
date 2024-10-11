@@ -20,16 +20,16 @@ export class UpdateNotificationConsent
     private notificationTypeRepository: NotificationTypeRepository,
   ) {}
 
-  async execute(
-    input: UpdateNotificationConsent.Input,
-  ): UpdateNotificationConsent.Output {
+  async execute({
+    payload,
+  }: UpdateNotificationConsent.Input): UpdateNotificationConsent.Output {
     const user = await this.userRepository.findByParam({
       key: 'id',
-      value: input.user.id,
+      value: payload.user.id,
     });
     if (!user) throw new UserNotFoundException();
     const notificationTypes = await this.validateNotificationTypes(
-      input.consents,
+      payload.consents,
     );
     const notificationConsents = notificationTypes.map(
       (type) =>
@@ -46,15 +46,15 @@ export class UpdateNotificationConsent
   private async validateNotificationTypes(
     consents: UpdateNotificationConsent.Consent[],
   ): Promise<NotificationType[]> {
-    const enabledConsents = consents.filter((consent) => consent.enabled);
-    const uniqueSlugs = [
-      ...new Set(enabledConsents.map((consent) => consent.id)),
-    ];
+    const uniqueSlugs = [...new Set(consents.map((consent) => consent.id))];
     if (uniqueSlugs.length !== consents.length)
       throw new DuplicatedNotificationConsentsException();
+    const enabledSlugs = consents
+      .filter((consent) => consent.enabled)
+      .map((consent) => consent.id);
     const notificationTypes =
-      await this.notificationTypeRepository.findAllyBySlug(uniqueSlugs);
-    if (notificationTypes.length !== uniqueSlugs.length)
+      await this.notificationTypeRepository.findAllyBySlug(enabledSlugs);
+    if (notificationTypes.length !== enabledSlugs.length)
       throw new NotificationTypeNotFoundException();
     return notificationTypes;
   }
@@ -65,6 +65,10 @@ export namespace UpdateNotificationConsent {
     execute(input: Input): Output;
   }
   export type Input = {
+    eventType: string;
+    payload: Payload;
+  };
+  export type Payload = {
     user: {
       id: string;
     };

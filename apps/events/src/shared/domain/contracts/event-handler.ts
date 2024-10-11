@@ -10,6 +10,7 @@ export namespace EventHandler {
   export type EventInput<T = any> = {
     eventType: string;
     queueName: string;
+    routingKey?: string;
     payload: T;
   };
   export interface Consumer<T = any> {
