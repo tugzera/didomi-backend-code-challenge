@@ -13,6 +13,7 @@ import { Response } from 'express';
 export class HttpExceptionFilter implements ExceptionFilter {
   private logger = new Logger();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   catch(exception: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
@@ -24,6 +25,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       });
     } else if (exception instanceof HttpException) {
       if (exception.getStatus() === HttpCode.UNPROCESSABLE_ENTITY) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const { message } = exception.getResponse() as any;
         response.status(exception.getStatus()).json({
           error: this.filterDtoValidation(message),
@@ -47,6 +49,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private filterDtoValidation(errors: string[]): any {
     if (Array.isArray(errors)) {
       const obj = {};

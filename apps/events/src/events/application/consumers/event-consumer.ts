@@ -4,7 +4,8 @@ import { EventRepository } from '@events/domain/repositories';
 export class EventConsumer implements EventConsumer.Contract {
   constructor(private eventRepository: EventRepository) {}
 
-  async execute(input: EventConsumer.Input): EventConsumer.Output {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async execute(input: EventConsumer.Input<any>): EventConsumer.Output {
     const event = Event.create({
       eventType: input.eventType,
       payload: input.payload,
@@ -15,9 +16,10 @@ export class EventConsumer implements EventConsumer.Contract {
 
 export namespace EventConsumer {
   export interface Contract {
-    execute(input: Input): Output;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    execute(input: Input<any>): Output;
   }
-  export type Input<T = any> = {
+  export type Input<T> = {
     eventType: string;
     payload: T;
   };

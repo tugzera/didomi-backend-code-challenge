@@ -9,6 +9,7 @@ export interface BaseRepository<DomainEntity> {
 export namespace BaseRepository {
   export type FindByParamInput<DomainEntity> = {
     key: keyof DomainEntity;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     value: any;
   };
   export type FindByParamOutput<DomainEntity> = Promise<DomainEntity | null>;

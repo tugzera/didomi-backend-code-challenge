@@ -1,4 +1,4 @@
-export type PaginationProps<T = any> = {
+export type PaginationProps<T> = {
   page: number;
   pageSize: number;
   searchString?: string;

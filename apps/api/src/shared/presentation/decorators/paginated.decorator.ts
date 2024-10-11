@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { applyDecorators, Type } from '@nestjs/common';
 import { ApiOkResponse, getSchemaPath } from '@nestjs/swagger';
 

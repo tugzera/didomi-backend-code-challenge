@@ -8,6 +8,7 @@ export type DatabaseProps = {
   logging?: boolean;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface DatabaseConnection<T = any> {
   connect(params: DatabaseProps): Promise<T>;
   disconnect(): Promise<void>;

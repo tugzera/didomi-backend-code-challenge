@@ -1,10 +1,10 @@
 import { PaginationResponseProps } from '@shared/domain/types';
 
 export class PaginationHelper {
-  static makePagination<T = any>(props: {
+  static makePagination<T>(props: {
     page: number;
     pageSize: number;
-    items: any[];
+    items: T[];
     count: number;
   }): PaginationResponseProps<T> {
     return {

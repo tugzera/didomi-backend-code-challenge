@@ -8,7 +8,7 @@ export type DatabaseProps = {
   logging?: boolean;
 };
 
-export interface DatabaseConnection<T = any> {
+export interface DatabaseConnection<T> {
   connect(params: DatabaseProps): Promise<T>;
   disconnect(): Promise<void>;
 }

@@ -18,6 +18,7 @@ export const makeApp = (app: INestApplication) => {
       whitelist: true,
       always: true,
       forbidUnknownValues: true,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       errorHttpStatusCode: HttpCode.UNPROCESSABLE_ENTITY as any,
     }),
   );

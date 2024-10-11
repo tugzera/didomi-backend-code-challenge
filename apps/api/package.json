@@ -41,6 +41,8 @@
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
     "@faker-js/faker": "^9.0.3",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",

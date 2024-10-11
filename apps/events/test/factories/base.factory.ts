@@ -1,4 +1,4 @@
-export interface RegisterFactory<T = any> {
+export interface RegisterFactory<T> {
   generateEntity(props: Partial<T>): T;
   generateRegisters(params: {
     props?: Partial<T>;

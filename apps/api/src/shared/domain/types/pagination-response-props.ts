@@ -1,4 +1,4 @@
-export type PaginationResponseProps<T = any> = {
+export type PaginationResponseProps<T> = {
   items: T[];
   totalItems: number;
   page: number;
