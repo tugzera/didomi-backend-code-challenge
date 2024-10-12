@@ -1,17 +1,11 @@
+import { typeormConfig } from '@common/infra/database/config';
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { typeormConfig } from '@shared/infra/database/config';
-import { TypeormDatabaseConnection } from '@shared/infra/database/typeorm-database-connection.adapter';
-import { SharedProvider } from '@shared/infra/ioc/shared-provider';
+import { SharedProvider, TypeormDatabaseConnection } from '@repo/shared';
 import { makeApp } from '@src/app.factory';
 import { AppModule } from '@src/app.module';
 import { eventHandlerMock } from '@test/mocks';
-import { config } from 'dotenv';
 import { DataSource } from 'typeorm';
-
-config({
-  path: '.env.test',
-});
 
 const setup = async () => {
   const moduleRef = await Test.createTestingModule({

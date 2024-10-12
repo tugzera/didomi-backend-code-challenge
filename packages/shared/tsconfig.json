@@ -1,0 +1,20 @@
+{
+  "extends": "../../packages/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "rootDir": "./src",
+    "composite": true,
+    "declaration": true,
+    "sourceMap": true,
+    "incremental": true,
+    "moduleResolution": "node",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@test/*": ["test/*"]
+    },
+    "allowJs": true
+  },
+  "exclude": ["node_modules", ".build", ".eslintrc.js", "dist"],
+  "include": ["src", "test"]
+}

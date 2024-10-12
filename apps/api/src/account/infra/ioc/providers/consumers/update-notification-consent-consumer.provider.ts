@@ -5,8 +5,7 @@ import {
 } from '@account/domain/repositories';
 import { AccountProvider } from '@account/infra/ioc/account-provider';
 import { Provider } from '@nestjs/common';
-import { EventHandler } from '@shared/domain/contracts';
-import { SharedProvider } from '@shared/infra/ioc/shared-provider';
+import { EventHandler, SharedProvider } from '@repo/shared';
 
 export class UpdateNotificationConsentConsumerProviderFactory {
   static generate(): Provider {

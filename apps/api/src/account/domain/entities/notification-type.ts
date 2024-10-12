@@ -1,4 +1,4 @@
-import { BaseEntity } from '@shared/domain/entities';
+import { BaseEntity } from '@repo/shared';
 
 export class NotificationType extends BaseEntity {
   name: string;

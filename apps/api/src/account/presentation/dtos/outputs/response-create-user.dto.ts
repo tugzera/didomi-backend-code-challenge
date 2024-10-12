@@ -4,7 +4,7 @@ import {
   LastNameDecorator,
   PhoneNumberDecorator,
   UuidDecorator,
-} from '@shared/presentation/decorators';
+} from '@repo/shared';
 
 export class ResponseCreateUserDto {
   @UuidDecorator()

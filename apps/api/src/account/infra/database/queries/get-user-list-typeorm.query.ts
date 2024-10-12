@@ -1,6 +1,6 @@
 import { GetUserListQuery } from '@account/application/queries';
-import { UserTypeormModel } from '@shared/infra/database/models';
-import { PaginationHelper } from '@shared/infra/helpers/pagination-helper';
+import { UserTypeormModel } from '@common/infra/database/models';
+import { PaginationHelper } from '@repo/shared';
 import { Brackets, DataSource } from 'typeorm';
 
 export class GetUserListTypeormQuery implements GetUserListQuery.Contract {

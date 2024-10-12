@@ -10,7 +10,7 @@ export default {
   moduleNameMapper: {
     '@test/(.+)': '<rootDir>/test/$1',
     '@src/(.+)': '<rootDir>/src/$1',
-    '@shared/(.+)': ['<rootDir>/src/shared/$1'],
+    '@common/(.+)': ['<rootDir>/src/common/$1'],
     '@account/(.+)': ['<rootDir>/src/account/$1'],
   },
   coverageDirectory: 'coverage',

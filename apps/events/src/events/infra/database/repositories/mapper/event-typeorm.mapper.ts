@@ -1,6 +1,6 @@
+import { EventTypeormModel } from '@common/infra/database/models';
 import { Event } from '@events/domain/entities';
-import { BaseMapper } from '@shared/infra/database/mapper/base.mapper';
-import { EventTypeormModel } from '@shared/infra/database/models';
+import { BaseMapper } from '@repo/shared';
 
 export class EventTypeormMapper
   implements BaseMapper<Event, EventTypeormModel>

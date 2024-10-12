@@ -1,10 +1,10 @@
+import { EventTypeormModel } from '@common/infra/database/models';
+import { CommonProvider } from '@common/infra/ioc/common.provider';
 import { EventRepository } from '@events/domain/repositories';
 import { EventTypeormRepository } from '@events/infra/database/repositories/event-typeorm.repository';
 import { EventTypeormMapper } from '@events/infra/database/repositories/mapper/event-typeorm.mapper';
 import { EventProvider } from '@events/infra/ioc/event-provider';
 import { Provider } from '@nestjs/common';
-import { EventTypeormModel } from '@shared/infra/database/models';
-import { SharedProvider } from '@shared/infra/ioc/shared-provider';
 import { DataSource } from 'typeorm';
 
 export class EventRepositoryProviderFactory {
@@ -18,7 +18,7 @@ export class EventRepositoryProviderFactory {
           new EventTypeormMapper(),
         );
       },
-      inject: [SharedProvider.DATABASE_CONNECTION],
+      inject: [CommonProvider.DATABASE_CONNECTION],
     };
   }
 }

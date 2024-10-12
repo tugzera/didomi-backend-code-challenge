@@ -2,8 +2,7 @@ import { UpdateNotificationConsentsCommand } from '@events/application/commands'
 import { EventRepository } from '@events/domain/repositories';
 import { EventProvider } from '@events/infra/ioc/event-provider';
 import { Provider } from '@nestjs/common';
-import { EventHandler } from '@shared/domain/contracts';
-import { SharedProvider } from '@shared/infra/ioc/shared-provider';
+import { EventHandler, SharedProvider } from '@repo/shared';
 
 export class UpdateNotificationConsentsCommandProviderFactory {
   static generate(): Provider {

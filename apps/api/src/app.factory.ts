@@ -1,7 +1,6 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { HttpCode } from '@shared/domain/constants';
-import { HttpExceptionFilter } from './shared/infra/filters/http-exception.filter';
+import { HttpCode, HttpExceptionFilter } from '@repo/shared';
 
 export const makeApp = (app: INestApplication) => {
   const config = new DocumentBuilder()

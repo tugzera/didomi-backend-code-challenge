@@ -5,10 +5,11 @@
     "baseUrl": ".",
     "paths": {
       "@account/*": ["src/account/*"],
-      "@shared/*": ["src/shared/*"],
+      "@common/*": ["src/common/*"],
       "@src/*": ["src/*"],
       "@test/*": ["test/*"]
-    }
+    },
+    "allowJs": true
   },
   "exclude": ["node_modules", ".build", ".eslintrc.js", "dist"],
   "include": ["src", "test"]

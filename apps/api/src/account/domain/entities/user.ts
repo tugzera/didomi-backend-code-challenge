@@ -1,5 +1,4 @@
-import { BaseEntity } from '@shared/domain/entities';
-import { DomainValidationException } from '@shared/domain/exceptions';
+import { BaseEntity, DomainValidationException } from '@repo/shared';
 import { NotificationConsent } from './notification-consent';
 
 export class User extends BaseEntity {

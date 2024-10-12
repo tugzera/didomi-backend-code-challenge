@@ -2,9 +2,9 @@ import {
   EmailDecorator,
   FirstNameDecorator,
   LastNameDecorator,
+  PasswordDecorator,
   PhoneNumberDecorator,
-} from '@shared/presentation/decorators';
-import { PasswordDecorator } from '../../../../shared/presentation/decorators/password.decorator';
+} from '@repo/shared';
 
 export class CreateUserDto {
   @FirstNameDecorator()

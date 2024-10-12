@@ -3,7 +3,7 @@ import {
   UserNotFoundException,
 } from '@account/domain/exceptions';
 import { UserRepository } from '@account/domain/repositories';
-import { EventHandler, HashGenerator } from '@shared/domain/contracts';
+import { EventHandler, HashGenerator } from '@repo/shared';
 
 export class UpdateUserCommand implements UpdateUserCommand.Contract {
   constructor(

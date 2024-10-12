@@ -1,6 +1,6 @@
 import { Event } from '@events/domain/entities';
 import { EventRepository } from '@events/domain/repositories';
-import { EventHandler } from '@shared/domain/contracts';
+import { EventHandler } from '@repo/shared';
 
 export class UpdateNotificationConsentsCommand
   implements UpdateNotificationConsentsCommand.Contract

@@ -1,5 +1,5 @@
-import { BaseRepository } from '@shared/domain/repositories';
-import { User } from '../entities/user';
+import { User } from '@account/domain/entities';
+import { BaseRepository } from '@repo/shared';
 
 export interface UserRepository extends BaseRepository<User> {
   getDetails(userId: string): Promise<User | null>;

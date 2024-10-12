@@ -1,9 +1,7 @@
 import { UpdateUserCommand } from '@account/application/commands';
+import { UserRepository } from '@account/domain/repositories';
 import { Provider } from '@nestjs/common';
-import { EventHandler } from '@shared/domain/contracts';
-import { HashGenerator } from '../../../../../shared/domain/contracts/hash-generator';
-import { SharedProvider } from '../../../../../shared/infra/ioc/shared-provider';
-import { UserRepository } from '../../../../domain/repositories';
+import { EventHandler, HashGenerator, SharedProvider } from '@repo/shared';
 import { AccountProvider } from '../../account-provider';
 
 export class UpdateUserProviderFactory {

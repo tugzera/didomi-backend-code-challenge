@@ -7,6 +7,16 @@ import { GetUserListQuery } from '@account/application/queries';
 import { User } from '@account/domain/entities/user';
 import { AccountProvider } from '@account/infra/ioc/account-provider';
 import {
+  CreateUserDto,
+  GetUserListDto,
+} from '@account/presentation/dtos/inputs';
+import { UpdateUserDto } from '@account/presentation/dtos/inputs/update-user.dto';
+import {
+  ResponseCreateUserDto,
+  ResponseGetUserListDto,
+  ResponseUpdateUserDto,
+} from '@account/presentation/dtos/outputs';
+import {
   Body,
   Controller,
   Delete,
@@ -27,19 +37,13 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { PaginationResponseProps } from '@shared/domain/types';
-import { ApiPaginatedResponse } from '@shared/presentation/decorators/paginated.decorator';
+
 import {
+  ApiPaginatedResponse,
   PaginationPropsDto,
+  PaginationResponseProps,
   SortDirection,
-} from '@shared/presentation/dtos/pagination-props.dto';
-import { CreateUserDto, GetUserListDto } from '../dtos/inputs';
-import { UpdateUserDto } from '../dtos/inputs/update-user.dto';
-import {
-  ResponseCreateUserDto,
-  ResponseGetUserListDto,
-  ResponseUpdateUserDto,
-} from '../dtos/outputs';
+} from '@repo/shared';
 
 @ApiExtraModels(ResponseGetUserListDto, PaginationPropsDto)
 @ApiTags('accounts')

@@ -1,9 +1,8 @@
 import { DeleteUserCommand } from '@account/application/commands/delete-user.command';
 import { UserRepository } from '@account/domain/repositories';
+import { AccountProvider } from '@account/infra/ioc/account-provider';
 import { Provider } from '@nestjs/common';
-import { EventHandler } from '@shared/domain/contracts';
-import { SharedProvider } from '@shared/infra/ioc/shared-provider';
-import { AccountProvider } from '../../account-provider';
+import { EventHandler, SharedProvider } from '@repo/shared';
 
 export class DeleteUserProviderFactory {
   static generate(): Provider {

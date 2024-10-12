@@ -1,4 +1,4 @@
-import { EventHandler } from '@shared/domain/contracts';
+import { EventHandler } from '@repo/shared';
 import { mock } from 'jest-mock-extended';
 
 const eventHandlerMock = mock<EventHandler>();

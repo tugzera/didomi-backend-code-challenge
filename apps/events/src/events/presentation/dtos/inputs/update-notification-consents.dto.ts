@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UuidDecorator } from '@shared/presentation/decorators';
+import { UuidDecorator } from '@repo/shared';
 import { Type } from 'class-transformer';
 import {
   ArrayMinSize,

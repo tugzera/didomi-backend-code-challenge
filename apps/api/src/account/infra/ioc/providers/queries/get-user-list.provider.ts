@@ -1,9 +1,9 @@
 import { GetUserListQuery } from '@account/application/queries';
 import { GetUserListTypeormQuery } from '@account/infra/database/queries/get-user-list-typeorm.query';
+import { AccountProvider } from '@account/infra/ioc/account-provider';
+import { CommonProvider } from '@common/infra/ioc/common.provider';
 import { Provider } from '@nestjs/common';
-import { SharedProvider } from '@shared/infra/ioc/shared-provider';
 import { DataSource } from 'typeorm';
-import { AccountProvider } from '../../account-provider';
 
 export class GetUserListProviderFactory {
   static generate(): Provider {
@@ -12,7 +12,7 @@ export class GetUserListProviderFactory {
       useFactory: (connection: DataSource): GetUserListQuery.Contract => {
         return new GetUserListTypeormQuery(connection);
       },
-      inject: [SharedProvider.DATABASE_CONNECTION],
+      inject: [CommonProvider.DATABASE_CONNECTION],
     };
   }
 }

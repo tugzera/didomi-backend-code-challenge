@@ -3,8 +3,9 @@ import { UserRepository } from '@account/domain/repositories';
 import {
   UserNotificationsConsentTypeormModel,
   UserTypeormModel,
-} from '@shared/infra/database/models';
-import { BaseTypeormRepository } from '@shared/infra/database/repositories/base-typeorm.repository';
+} from '@common/infra/database/models';
+import { BaseTypeormRepository } from '@repo/shared';
+
 import { IsNull } from 'typeorm';
 
 export class UserTypeormRepository

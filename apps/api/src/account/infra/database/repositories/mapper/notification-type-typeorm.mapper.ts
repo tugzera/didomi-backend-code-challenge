@@ -1,6 +1,6 @@
 import { NotificationType } from '@account/domain/entities';
-import { BaseMapper } from '@shared/infra/database/mapper/base.mapper';
-import { NotificationTypeTypeormModel } from '@shared/infra/database/models';
+import { NotificationTypeTypeormModel } from '@common/infra/database/models';
+import { BaseMapper } from '@repo/shared';
 
 export class NotificationTypeTypeormMapper
   implements BaseMapper<NotificationType, NotificationTypeTypeormModel>

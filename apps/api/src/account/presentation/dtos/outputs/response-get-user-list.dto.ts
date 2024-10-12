@@ -3,7 +3,8 @@ import {
   FirstNameDecorator,
   LastNameDecorator,
   UuidDecorator,
-} from '@shared/presentation/decorators';
+} from '@repo/shared';
+
 import { Expose } from 'class-transformer';
 
 export class ResponseGetUserListDto {

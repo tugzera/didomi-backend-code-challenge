@@ -1,5 +1,5 @@
 import { NotificationType } from '@account/domain/entities';
-import { BaseRepository } from '@shared/domain/repositories';
+import { BaseRepository } from '@repo/shared';
 
 export interface NotificationTypeRepository
   extends BaseRepository<NotificationType> {

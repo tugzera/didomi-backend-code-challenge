@@ -1,7 +1,7 @@
 import { NotificationType } from '@account/domain/entities';
 import { NotificationTypeRepository } from '@account/domain/repositories';
-import { NotificationTypeTypeormModel } from '@shared/infra/database/models';
-import { BaseTypeormRepository } from '@shared/infra/database/repositories/base-typeorm.repository';
+import { NotificationTypeTypeormModel } from '@common/infra/database/models';
+import { BaseTypeormRepository } from '@repo/shared';
 
 export class NotificationTypeTypeormRepository
   extends BaseTypeormRepository<NotificationTypeTypeormModel, NotificationType>

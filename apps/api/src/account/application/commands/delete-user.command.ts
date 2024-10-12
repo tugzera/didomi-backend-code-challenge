@@ -1,6 +1,6 @@
 import { UserNotFoundException } from '@account/domain/exceptions';
 import { UserRepository } from '@account/domain/repositories';
-import { EventHandler } from '@shared/domain/contracts';
+import { EventHandler } from '@repo/shared';
 
 export class DeleteUserCommand implements DeleteUserCommand.Contract {
   constructor(

@@ -1,9 +1,8 @@
 import { CreateUserCommand } from '@account/application/commands';
 import { UserRepository } from '@account/domain/repositories';
+import { AccountProvider } from '@account/infra/ioc/account-provider';
 import { Provider } from '@nestjs/common';
-import { EventHandler, HashGenerator } from '@shared/domain/contracts';
-import { SharedProvider } from '@shared/infra/ioc/shared-provider';
-import { AccountProvider } from '../../account-provider';
+import { EventHandler, HashGenerator, SharedProvider } from '@repo/shared';
 
 export class CreateUserProviderFactory {
   static generate(): Provider {

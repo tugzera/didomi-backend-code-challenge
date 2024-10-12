@@ -1,7 +1,7 @@
 import { NotificationConsent } from '@account/domain/entities';
 import { User } from '@account/domain/entities/user';
-import { BaseMapper } from '@shared/infra/database/mapper/base.mapper';
-import { UserTypeormModel } from '@shared/infra/database/models';
+import { UserTypeormModel } from '@common/infra/database/models';
+import { BaseMapper } from '@repo/shared';
 
 export class UserTypeormMapper implements BaseMapper<User, UserTypeormModel> {
   entityToModel(domain: User): UserTypeormModel {

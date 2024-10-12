@@ -4,7 +4,7 @@ import {
   LastNameDecorator,
   PasswordDecorator,
   PhoneNumberDecorator,
-} from '@shared/presentation/decorators';
+} from '@repo/shared';
 
 export class UpdateUserDto {
   @FirstNameDecorator(false)

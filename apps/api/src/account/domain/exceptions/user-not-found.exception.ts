@@ -1,6 +1,4 @@
-import { HttpCode } from 'src/shared/domain/constants/http-code';
-import { Exception } from 'src/shared/domain/exceptions';
-
+import { Exception, HttpCode } from '@repo/shared';
 export class UserNotFoundException extends Exception {
   constructor() {
     const message = 'User not found exception';
