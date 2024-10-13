@@ -4,7 +4,7 @@
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
-      "@account/*": ["src/account/*"],
+      "@users/*": ["src/users/*"],
       "@common/*": ["src/common/*"],
       "@src/*": ["src/*"],
       "@test/*": ["test/*"]

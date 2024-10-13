@@ -2,6 +2,7 @@
   "name": "didomi-code-challenge",
   "private": true,
   "scripts": {
+    "migration:run": "turbo migration:run",
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
@@ -21,6 +22,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "typeorm": "^0.3.20"
+    "typeorm": "0.3.20"
   }
 }

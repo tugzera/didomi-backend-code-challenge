@@ -21,7 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "model:generate": "npx typeorm-model-generator -h localhost -d postgres -u postgres -x postgres -e postgres -p 5434",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d src/shared/infra/database/config.ts",
-    "migration:run": "yarn typeorm migration:run",
+    "migration:run11": "yarn typeorm migration:run",
     "migration:revert": "yarn typeorm migration:revert"
   },
   "dependencies": {
@@ -37,7 +37,8 @@
     "class-validator": "^0.14.1",
     "pg": "^8.13.0",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typeorm": "0.3.20"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.0.3",

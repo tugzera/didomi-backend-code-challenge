@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker';
 import { BcryptHashAdapter } from '@repo/shared';
-import { User } from '@src/account/domain/entities/user';
-import { UserTypeormMapper } from '@src/account/infra/database/repositories/mapper/user-typeorm.mapper';
 import { UserTypeormModel } from '@src/common/infra/database/models/user-typeorm.model';
+import { User } from '@users/domain/entities/user';
+import { UserTypeormMapper } from '@users/infra/database/repositories/mapper/user-typeorm.mapper';
 import { randomUUID } from 'crypto';
 import { DataSource, Repository } from 'typeorm';
 import { RegisterFactory } from './base.factory';

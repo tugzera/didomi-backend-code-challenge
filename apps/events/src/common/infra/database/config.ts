@@ -2,7 +2,7 @@ import { config } from 'dotenv';
 import { join } from 'path';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
-const envPath = join(process.cwd(), 'apps', 'events');
+const envPath = join(__dirname, '..', '..', '..', '..');
 
 config({
   path:

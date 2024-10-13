@@ -13,6 +13,10 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "migration:run": {
+      "cache": false,
+      "persistent": true
     }
   }
 }

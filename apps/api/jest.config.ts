@@ -11,8 +11,12 @@ export default {
     '@test/(.+)': '<rootDir>/test/$1',
     '@src/(.+)': '<rootDir>/src/$1',
     '@common/(.+)': ['<rootDir>/src/common/$1'],
-    '@account/(.+)': ['<rootDir>/src/account/$1'],
+    '@users/(.+)': ['<rootDir>/src/users/$1'],
   },
+  coveragePathIgnorePatterns: [
+    '<rootDir>/src/main.ts',
+    '<rootDir>/src/common/infra/database/migrations/*',
+  ],
   coverageDirectory: 'coverage',
   coverageThreshold: {
     global: {
