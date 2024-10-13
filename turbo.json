@@ -17,6 +17,10 @@
     "migration:run": {
       "cache": false,
       "persistent": true
+    },
+    "test:cov": {
+      "cache": false,
+      "persistent": true
     }
   }
 }

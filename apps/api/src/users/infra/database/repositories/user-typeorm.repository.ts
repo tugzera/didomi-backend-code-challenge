@@ -3,7 +3,7 @@ import {
   UserTypeormModel,
 } from '@common/infra/database/models';
 import { BaseTypeormRepository } from '@repo/shared';
-import { User } from '@users/domain/entities/user';
+import { User } from '@users/domain/entities';
 import { UserRepository } from '@users/domain/repositories';
 
 import { IsNull } from 'typeorm';

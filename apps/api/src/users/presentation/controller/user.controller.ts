@@ -28,7 +28,7 @@ import {
   GetUserDetailsQuery,
   GetUserListQuery,
 } from '@users/application/queries';
-import { User } from '@users/domain/entities/user';
+import { User } from '@users/domain/entities';
 import { AccountProvider } from '@users/infra/ioc/account-provider';
 import { CreateUserDto, GetUserListDto } from '@users/presentation/dtos/inputs';
 import { UpdateUserDto } from '@users/presentation/dtos/inputs/update-user.dto';

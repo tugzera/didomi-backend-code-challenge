@@ -1,5 +1,5 @@
 import { PaginationProps, PaginationResponseProps } from '@repo/shared';
-import { User } from '@users/domain/entities/user';
+import { User } from '@users/domain/entities';
 
 export namespace GetUserListQuery {
   export interface Contract {

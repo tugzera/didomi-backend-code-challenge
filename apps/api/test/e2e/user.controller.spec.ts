@@ -5,7 +5,7 @@ import {
   UserNotificationConsentsFactory,
 } from '@test/factories';
 import { app, databaseConnection } from '@test/setup';
-import { User } from '@users/domain/entities/user';
+import { User } from '@users/domain/entities';
 import {
   UserEmailAlreadyRegisteredException,
   UserNotFoundException,

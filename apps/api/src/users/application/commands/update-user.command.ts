@@ -1,4 +1,4 @@
-import { EventHandler, HashGenerator } from '@repo/shared';
+import { EventHandler, Events, HashGenerator } from '@repo/shared';
 import {
   UserEmailAlreadyRegisteredException,
   UserNotFoundException,
@@ -31,10 +31,18 @@ export class UpdateUserCommand implements UpdateUserCommand.Contract {
       phoneNumber: input.phoneNumber,
     });
     await this.userRepository.save(user);
-    await this.eventHandler.send({
-      eventType: 'USER_UPDATED',
-      queueName: 'events_fanout_exchange',
-      payload: input,
+    await this.eventHandler.send<Events.UserUpdatedEventInput>({
+      eventType: Events.Type.USER_UPDATED,
+      queueName: Events.Queue.FAN_OUT,
+      payload: {
+        id: user.id,
+        email: input.email,
+        firstName: input.firstName,
+        lastName: input.lastName,
+        password: passwordHash,
+        phoneNumber: input.phoneNumber,
+        updatedAt: user.updatedAt!.toISOString(),
+      },
     });
     return {
       id: user.id,
@@ -42,7 +50,7 @@ export class UpdateUserCommand implements UpdateUserCommand.Contract {
       firstName: user.firstName,
       lastName: user.lastName,
       createdAt: user.createdAt.toISOString(),
-      updatedAt: user.updatedAt ? user.updatedAt.toISOString() : null,
+      updatedAt: user.updatedAt!.toISOString(),
     };
   }
 

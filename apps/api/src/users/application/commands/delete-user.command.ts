@@ -1,4 +1,4 @@
-import { EventHandler } from '@repo/shared';
+import { EventHandler, Events } from '@repo/shared';
 import { UserNotFoundException } from '@users/domain/exceptions';
 import { UserRepository } from '@users/domain/repositories';
 
@@ -16,8 +16,8 @@ export class DeleteUserCommand implements DeleteUserCommand.Contract {
     if (!user) throw new UserNotFoundException();
     await this.userRepository.softDelete(user.id);
     await this.eventHandler.send({
-      eventType: 'USER_DELETED',
-      queueName: 'events_fanout_exchange',
+      eventType: Events.Type.USER_DELETED,
+      queueName: Events.Queue.FAN_OUT,
       payload: input,
     });
   }
