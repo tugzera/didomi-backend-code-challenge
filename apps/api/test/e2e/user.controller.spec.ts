@@ -138,19 +138,21 @@ describe('UserController (e2e)', () => {
     });
 
     it('should return user list on success', async () => {
+      const total = await userFactory.repository.find();
       await agent(app.getHttpServer())
         .get(url)
         .expect(({ status, body }) => {
           expect(status).toBe(HttpCode.OK);
           expect(body.items.length).toBe(userList.length);
-          expect(body.totalItems).toBe(userList.length);
+          expect(body.totalItems).toBe(total.length);
           expect(body.page).toBe(1);
           expect(body.pageSize).toBe(10);
-          expect(body.totalPages).toBe(1);
+          expect(body.totalPages).toBe(Math.ceil(total.length / 10));
         });
     });
 
     it('should return paginated user list on success', async () => {
+      const total = await userFactory.repository.find();
       const params = {
         page: 1,
         pageSize: 1,
@@ -161,20 +163,25 @@ describe('UserController (e2e)', () => {
         .expect(({ status, body }) => {
           expect(status).toBe(HttpCode.OK);
           expect(body.items.length).toBe(params.pageSize);
-          expect(body.totalItems).toBe(userList.length);
+          expect(body.totalItems).toBe(total.length);
           expect(body.page).toBe(params.page);
-          expect(body.totalPages).toBe(userList.length);
+          expect(body.totalPages).toBe(
+            Math.ceil(total.length / params.pageSize),
+          );
         });
     });
 
     it('should return sorted user list on success', async () => {
-      const sortedUserList = userList.sort((a, b) => {
-        if (a.firstName.toLocaleLowerCase() > b.firstName.toLocaleLowerCase())
-          return 1;
-        if (a.firstName.toLocaleLowerCase() < b.firstName.toLocaleLowerCase())
-          return -1;
-        return 0;
-      });
+      const total = await userFactory.repository.find();
+      const sortedUserList = total
+        .sort((a, b) => {
+          if (a.firstName.toLocaleLowerCase() > b.firstName.toLocaleLowerCase())
+            return 1;
+          if (a.firstName.toLocaleLowerCase() < b.firstName.toLocaleLowerCase())
+            return -1;
+          return 0;
+        })
+        .slice(0, 10);
       const params = {
         sortBy: 'firstName',
         sortDirection: 'ASC',

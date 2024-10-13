@@ -16,13 +16,14 @@ export default {
   coveragePathIgnorePatterns: [
     '<rootDir>/src/main.ts',
     '<rootDir>/src/common/infra/database/migrations/*',
+    '<rootDir>/src/users/domain/repositories/index.ts',
   ],
   coverageDirectory: 'coverage',
   coverageThreshold: {
     global: {
-      statements: 90,
-      functions: 90,
-      lines: 90,
+      statements: 100,
+      functions: 100,
+      lines: 100,
     },
   },
 };

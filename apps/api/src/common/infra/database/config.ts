@@ -22,7 +22,7 @@ export const typeormConfig: DataSourceOptions = {
   dropSchema: false,
   migrations: [`${__dirname}/migrations/*.{js,ts}`],
   entities: [`${__dirname}/models/*.{js,ts}`],
-  logging: true,
+  logging: process.env.DB_LOGGING === 'true',
 };
 
 export const dataSource = new DataSource(typeormConfig);
