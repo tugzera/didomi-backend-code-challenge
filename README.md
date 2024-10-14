@@ -1,81 +1,42 @@
-# Turborepo starter
+# Didomi Backend Code Challenge
 
-This is an official starter Turborepo.
+## Requirements
 
-## Using this example
 
-Run the following command:
+The API you are building supports CRUD operations on user and event entities with the following rules:
 
-```sh
-npx create-turbo@latest
-```
+A user can have multiple events that, when applied in the order of their creation, will generate the current user consent status.
+A user accepts only one required field (email) that must be a valid email address and unique. If any of the requirements are not satisfied, the API must return a 422 response.
+Consent IDs can be one of the following: email_notifications or sms_notifications.
+Consent change events can only be read and created, not update or deleted.
+A consent change event belongs to a single user.
+To keep the challenge as short as possible the mandatory routes and methods are the following:
 
-## What's inside?
+/users [GET, POST, DELETE]
 
-This Turborepo includes the following packages/apps:
+/events [POST]
 
-### Apps and Packages
+## Configure
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+On workspaces copy .env.local.example to .env.local
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## How to run?
 
-### Utilities
+`$ sudo docker-compose up -d --build`
 
-This Turborepo has some additional tools already setup for you:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## Commands
 
-### Build
+`$ yarn install`
 
-To build all apps and packages, run the following command:
+`$ yarn test`
 
-```
-cd my-turborepo
-pnpm build
-```
+`$ yarn migration:run`
 
-### Develop
+`$ yarn dev`
 
-To develop all apps and packages, run the following command:
+## Services
 
-```
-cd my-turborepo
-pnpm dev
-```
+http://localhost:3000/docs#/ -> CRUD API
 
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+http://localhost:3001/docs#/ -> EVENTS API
