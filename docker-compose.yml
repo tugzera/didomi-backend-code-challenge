@@ -16,9 +16,14 @@ services:
       - ./.docker/rabbitmq/definitions.json:/etc/rabbitmq/definitons.json:ro
     networks:
       - app-network
+    healthcheck:
+      test: ['CMD', 'rabbitmq-diagnostics', 'check_running']
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-  databaseapi:
-    container_name: databaseapi
+  database-api:
+    container_name: database-api
     image: postgres:14
     environment:
       - POSTGRES_USER=postgres
@@ -31,8 +36,8 @@ services:
     networks:
       - app-network
 
-  databaseapitest:
-    container_name: databaseapitest
+  database-api-test:
+    container_name: database-api-test
     image: postgres:14
     environment:
       POSTGRES_USER: postgres
@@ -45,8 +50,8 @@ services:
     networks:
       - app-network
 
-  databaseevents:
-    container_name: databaseevents
+  database-events:
+    container_name: database-events
     image: postgres:14
     environment:
       - POSTGRES_USER=postgres
@@ -59,8 +64,8 @@ services:
     networks:
       - app-network
 
-  databaseeventstest:
-    container_name: databaseeventstest
+  database-events-test:
+    container_name: database-events-test
     image: postgres:14
     environment:
       POSTGRES_USER: postgres
@@ -70,6 +75,40 @@ services:
       - .docker/testdbevents/:/data/postgres
     ports:
       - '5435:5432'
+    networks:
+      - app-network
+
+  crud-api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+      args:
+        - APP_WORKSPACE=apps/api
+    container_name: crud-api
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  events-api:
+    build:
+      context: .
+      dockerfile: apps/events/Dockerfile
+      args:
+        - APP_WORKSPACE=apps/events
+    container_name: events-api
+    ports:
+      - '3001:3000'
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
     networks:
       - app-network
 

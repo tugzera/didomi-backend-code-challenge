@@ -24,6 +24,5 @@ export const typeormConfig: DataSourceOptions = {
   entities: [`${__dirname}/models/*.{js,ts}`],
   logging: process.env.DB_LOGGING === 'true',
 };
-console.log('AKI', typeormConfig);
 
 export const dataSource = new DataSource(typeormConfig);
