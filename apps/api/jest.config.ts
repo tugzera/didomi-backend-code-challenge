@@ -16,7 +16,6 @@ export default {
   coveragePathIgnorePatterns: [
     '<rootDir>/src/main.ts',
     '<rootDir>/src/common/infra/database/migrations/*',
-    '<rootDir>/src/common/infra/database/typeorm-database-connection.adapter.ts',
     '<rootDir>/src/users/domain/repositories/index.ts',
   ],
   coverageDirectory: 'coverage',

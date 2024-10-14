@@ -2,7 +2,7 @@ import { EventConsumer } from '@events/application/consumers/event-consumer';
 import { EventRepository } from '@events/domain/repositories';
 import { EventProvider } from '@events/infra/ioc/event-provider';
 import { Provider } from '@nestjs/common';
-import { EventHandler, SharedProvider } from '@repo/shared';
+import { EventHandler, Events, SharedProvider } from '@repo/shared';
 
 export class EventConsumerProviderFactory {
   static generate(): Provider {
@@ -13,7 +13,7 @@ export class EventConsumerProviderFactory {
         eventRepository: EventRepository,
       ): Promise<EventConsumer.Contract> => {
         const consumer = new EventConsumer(eventRepository);
-        await eventHandler.consume('events_queue', consumer);
+        await eventHandler.consume(Events.Queues.EVENTS_QUEUE, consumer);
         return consumer;
       },
       inject: [

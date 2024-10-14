@@ -17,7 +17,7 @@ export class DeleteUserCommand implements DeleteUserCommand.Contract {
     await this.userRepository.softDelete(user.id);
     await this.eventHandler.send({
       eventType: Events.Type.USER_DELETED,
-      queueName: Events.Queue.FAN_OUT,
+      queueName: Events.Exchanges.FAN_OUT,
       payload: input,
     });
   }

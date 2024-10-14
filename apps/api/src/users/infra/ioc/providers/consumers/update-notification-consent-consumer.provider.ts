@@ -1,5 +1,5 @@
 import { Provider } from '@nestjs/common';
-import { EventHandler, SharedProvider } from '@repo/shared';
+import { EventHandler, Events, SharedProvider } from '@repo/shared';
 import { UpdateNotificationConsent } from '@users/application/consumers';
 import {
   NotificationTypeRepository,
@@ -20,7 +20,10 @@ export class UpdateNotificationConsentConsumerProviderFactory {
           userRepository,
           notificationTypeRepository,
         );
-        await eventHandler.consume('notification_consents_queue', consumer);
+        await eventHandler.consume(
+          Events.Queues.NOTIFICATION_CONSENTS_QUEUE,
+          consumer,
+        );
         return consumer;
       },
       inject: [

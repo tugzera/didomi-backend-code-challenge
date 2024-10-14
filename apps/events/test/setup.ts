@@ -1,8 +1,7 @@
 import { typeormConfig } from '@common/infra/database/config';
-import { TypeormDatabaseConnection } from '@common/infra/database/typeorm-database-connection.adapter';
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { SharedProvider } from '@repo/shared';
+import { SharedProvider, TypeormDatabaseConnection } from '@repo/shared';
 import { makeApp } from '@src/app.factory';
 import { AppModule } from '@src/app.module';
 import { eventHandlerMock } from '@test/mocks';
