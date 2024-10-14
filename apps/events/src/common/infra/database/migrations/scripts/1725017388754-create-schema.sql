@@ -45,7 +45,7 @@ CREATE TABLE public.events (
 	event_type varchar(100) NOT NULL,
 	payload jsonb NOT NULL,
 	created_at timestamp with time zone NOT NULL,
-	updated_at timestamp with time zone NOT NULL,
+	updated_at timestamp with time zone,
 	deleted_at timestamp with time zone,
 	CONSTRAINT pk__events PRIMARY KEY (id)
 );

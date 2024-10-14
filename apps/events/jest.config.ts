@@ -13,12 +13,17 @@ export default {
     '@common/(.+)': ['<rootDir>/src/common/$1'],
     '@events/(.+)': ['<rootDir>/src/events/$1'],
   },
+  coveragePathIgnorePatterns: [
+    '<rootDir>/src/main.ts',
+    '<rootDir>/src/common/infra/database/migrations/*',
+    '<rootDir>/src/events/domain/repositories/index.ts',
+  ],
   coverageDirectory: 'coverage',
   coverageThreshold: {
     global: {
-      statements: 90,
-      functions: 90,
-      lines: 90,
+      statements: 100,
+      functions: 100,
+      lines: 100,
     },
   },
 };
