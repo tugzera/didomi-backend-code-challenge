@@ -14,4 +14,4 @@ RUN yarn install
 RUN yarn build
 
 # Run application
-CMD ["node", "apps/events/dist/main.js"]
+CMD ["sh", "-c", "yarn migration:run && node apps/events/dist/main.js"]

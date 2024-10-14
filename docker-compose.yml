@@ -35,6 +35,11 @@ services:
       - '5432:5432'
     networks:
       - app-network
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   database-api-test:
     container_name: database-api-test
@@ -63,6 +68,11 @@ services:
       - '5434:5432'
     networks:
       - app-network
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   database-events-test:
     container_name: database-events-test
@@ -92,6 +102,8 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
+      database-api:
+        condition: service_healthy
     networks:
       - app-network
 
@@ -108,6 +120,8 @@ services:
       - .:/usr/src/app
     depends_on:
       rabbitmq:
+        condition: service_healthy
+      database-events:
         condition: service_healthy
     networks:
       - app-network

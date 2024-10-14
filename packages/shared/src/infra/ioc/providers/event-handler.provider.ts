@@ -11,12 +11,6 @@ export class EventHandlerProviderFactory {
       useFactory: async (
         configService: ConfigService,
       ): Promise<EventHandler> => {
-        console.log("AKI", {
-          rmqUser: configService.getOrThrow('RABBITMQ_USER'),
-          rmqPass: configService.getOrThrow('RABBITMQ_PASSWORD'),
-          rmqHost: configService.getOrThrow('RABBITMQ_HOST'),
-          rmqPort: configService.getOrThrow('RABBITMQ_PORT'),
-        });
         const eventHandler = RabbitMQEventHandlerAdapter.getInstance({
           rmqUser: configService.getOrThrow('RABBITMQ_USER'),
           rmqPass: configService.getOrThrow('RABBITMQ_PASSWORD'),
