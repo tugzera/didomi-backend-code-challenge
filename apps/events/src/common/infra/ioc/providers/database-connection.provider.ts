@@ -1,7 +1,7 @@
 import { typeormConfig } from '@common/infra/database/config';
+import { TypeormDatabaseConnection } from '@common/infra/database/typeorm-database-connection.adapter';
 import { CommonProvider } from '@common/infra/ioc/common.provider';
 import { Provider } from '@nestjs/common';
-import { TypeormDatabaseConnection } from '@repo/shared';
 import { DataSource } from 'typeorm';
 
 export class DatabaseConnectionProviderFactory {

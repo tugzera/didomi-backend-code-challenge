@@ -8,7 +8,7 @@ config({
   path:
     process.env.NODE_ENV === 'test'
       ? join(envPath, '.env.test')
-      : join(envPath, '.env'),
+      : join(envPath, '.env.local'),
 });
 
 export const typeormConfig: DataSourceOptions = {

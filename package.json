@@ -3,11 +3,12 @@
   "private": true,
   "scripts": {
     "migration:run": "turbo migration:run",
-    "build": "turbo build",
+    "build": "turbo build:package && turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "test:cov": "turbo test:cov"
+    "test": "NODE_ENV=test turbo test",
+    "test:cov": "NODE_ENV=test turbo test:cov"
   },
   "devDependencies": {
     "prettier": "^3.2.5",

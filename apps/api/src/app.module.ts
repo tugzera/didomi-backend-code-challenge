@@ -6,7 +6,7 @@ import { UserModule } from '@users/account.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env.local' }),
     UserModule,
     CommonModule,
     SharedModule,
